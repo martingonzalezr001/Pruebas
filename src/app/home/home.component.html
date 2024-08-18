@@ -1,4 +1,4 @@
-<a routerLink="/book-form/new" class="p-button font-bold">
+<a routerLink="book-form/new" class="p-button font-bold">
     Crear nuevo libro
 </a>
 @for (book of books; track book.id) {
@@ -16,7 +16,7 @@
         <ng-template pTemplate="footer">
             <div class="flex gap-3 mt-1">
                 <p-button label="Delete" severity="secondary" class="w-full" styleClass="w-full" />
-                <p-button label="Edit" class="w-full" styleClass="w-full" />
+                <a class="w-full" routerLink="/book-form/{{book.id}}"></a>
             </div>
         </ng-template>
     </p-card>

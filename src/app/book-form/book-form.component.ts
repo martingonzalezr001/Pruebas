@@ -33,7 +33,9 @@ export class BookFormComponent {
 
 
   ngOnInit(): void {
+    console.log("Rpueba");
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(id);
     if (id != 'new') {
       this.edit = true;
       this.getBookById(+id!);
@@ -51,7 +53,6 @@ export class BookFormComponent {
           summary:'Error',
           detail:'No encontrado'
         });
-        this.router.navigateByUrl('/');
 
       },
     });
@@ -64,7 +65,8 @@ export class BookFormComponent {
         severity: 'error',
         summary: 'Error',
         detail: 'Revise los campos e intente nuevamente'
-      });      return;
+      });
+      return;
     }
     this.bookService.createBook(this.formBook.value).subscribe({
       next:()=>{
@@ -73,7 +75,16 @@ export class BookFormComponent {
           summary: 'Guardado',
           detail: 'Libro guardado correctamente'
         });
+        this.router.navigateByUrl('/')
+      },
+      error:()=>{
+        this.msg.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Revise los campos e intente nuevamente'
+        });
       }
+
     });
   }
 
@@ -84,7 +95,8 @@ export class BookFormComponent {
         severity: 'error',
         summary: 'Error',
         detail: 'Revise los campos e intente nuevamente'
-      });      return;
+      });
+      return;
     }
     this.bookService.updateBook(this.formBook.value).subscribe({
       next:()=>{
@@ -93,7 +105,16 @@ export class BookFormComponent {
           summary: 'Actualizado',
           detail: 'Libro actualizado correctamente'
         });
+        this.router.navigateByUrl('/')
+      },
+      error:()=>{
+        this.msg.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Revise los campos e intente nuevamente'
+        });
       }
+
     });
   }
 }
