@@ -19,7 +19,8 @@ export class HomeComponent {
   constructor (private bookservice:BookService){}
 
   ngOnInit():void {
-
+    console.log("HOLA");
+    this.getAllBooks();
     
 
   }
@@ -27,6 +28,6 @@ export class HomeComponent {
   getAllBooks(){
     this.bookservice.getBooks().subscribe(data=> {
       this.books = data;
-    })
+    });
   }
 }

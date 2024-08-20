@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookService } from '../services/book.service';
 import { ButtonModule } from 'primeng/button';
 import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
@@ -11,23 +11,23 @@ import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-book-form',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, ButtonModule, RouterModule, ToastModule,InputTextModule, InputNumberModule, CardModule ],
+  imports: [ReactiveFormsModule, FormsModule, ButtonModule, RouterModule, ToastModule, InputTextModule, InputNumberModule, CardModule ],
   templateUrl: './book-form.component.html',
   styleUrl: './book-form.component.css'
 })
 export class BookFormComponent {
 
-  formBook!: FormGroup;
-  isSaveInProgress: boolean = false;
-  edit: boolean = false;
+  formBook!:FormGroup;
+  isSaveInProgress:boolean = false;
+  edit:boolean = false;
 
   constructor(private fb: FormBuilder, private bookService: BookService, private activatedRoute: ActivatedRoute, private router:Router, private msg:MessageService) {
     this.formBook = this.fb.group({
       id: [null],
       title: ['', Validators.required],
       author: ['', Validators.required],
-      pages: [1, [Validators.required, Validators.min(1)]],
-      price: [0, Validators.required, Validators.min(0)]
+      numPages: [1, [Validators.required, Validators.min(1)]],
+      price: [0, [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -117,4 +117,7 @@ export class BookFormComponent {
 
     });
   }
+
+
+ 
 }

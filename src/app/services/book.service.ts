@@ -8,7 +8,7 @@ import { Book } from '../models/book';
 })
 export class BookService {
 
-  private apiUrl = 'localhost://8080/book';
+  private apiUrl = 'http://localhost:8080/book';
 
   constructor(private http:HttpClient) { }
 
@@ -20,8 +20,8 @@ export class BookService {
     return this.http.get<Book>(`${this.apiUrl}/${id}`);
   }
 
-  createBook(book:Book){
-    return this.http.post(this.apiUrl, book);
+  createBook(book:Book):Observable<Book>{
+    return this.http.post<Book>(this.apiUrl, book);
   }
 
   updateBook(book:Book){

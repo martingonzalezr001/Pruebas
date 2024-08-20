@@ -3,20 +3,20 @@
 </a>
 @for (book of books; track book.id) {
 
-    <p-card header="{{book.title}}" subheader="{{book.author}}" [style]="{ width: '360px' }">
+    <p-card class="flex wrap-flex" header="{{book.title}}" subheader="{{book.author}}" [style]="{ width: '360px' }">
         <ng-template pTemplate="header">
             <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
         </ng-template>
         <p>
-            Número de páginas:{{book.pages}}
+            Número de páginas:{{book.numPages}}
         </p>
         <p>
-            Precio:{{book.prices}} €
+            Precio:{{book.price}} €
         </p>
         <ng-template pTemplate="footer">
             <div class="flex gap-3 mt-1">
                 <p-button label="Delete" severity="secondary" class="w-full" styleClass="w-full" />
-                <a class="w-full" routerLink="/book-form/{{book.id}}"></a>
+                <a class="w-full" routerLink="/book-form/{{book.id}}">Editar</a>
             </div>
         </ng-template>
     </p-card>
